@@ -65,9 +65,9 @@ const TrustCredibility = () => {
     return (
         <>
             {/* SECTION 1: VISUAL TRUST + PREMIUM SHOWCASE */}
-            <section className="section-padding bg-white">
+            <section className="section-padding bg-brand-primary">
                 <div className="container">
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-12">
                         <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Parents Who Saw <span className="text-brand-teal">Real Change</span></h2>
                         <p className="text-xl text-gray-600 font-medium max-w-2xl mx-auto">
                             Consistent daily learning with personal mentor support
@@ -86,7 +86,7 @@ const TrustCredibility = () => {
                                 <div className="h-64 overflow-hidden bg-gray-100 relative">
                                     <motion.img
                                         whileHover={{ scale: 1.05 }}
-                                        transition={{ duration: 0.5 }}
+                                        transition={{ duration: 0.3 }}
                                         src={review.image}
                                         alt={review.studentDetails}
                                         className="w-full h-full object-cover object-top"
@@ -94,7 +94,7 @@ const TrustCredibility = () => {
                                 </div>
 
                                 {/* Content Area */}
-                                <div className="p-8 relative">
+                                <div className="p-6 relative">
                                     {/* Quote Icon */}
                                     <div className="absolute -top-6 right-8 bg-brand-teal text-white p-3 rounded-full shadow-md">
                                         <Quote size={20} fill="currentColor" />
@@ -120,7 +120,7 @@ const TrustCredibility = () => {
             </section>
 
             {/* SECTION 2: TEXT-ONLY REVIEWS CAROUSEL */}
-            <section className="py-20 bg-[#f9f9f9] overflow-hidden border-t border-gray-100">
+            <section className="py-12 bg-brand-primary overflow-hidden border-t border-gray-100">
                 <div className="container text-center mb-12">
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">What Parents Say <span className="text-brand-teal">Every Day</span></h2>
                     <p className="text-gray-500">Real words from real families across the globe</p>
@@ -129,8 +129,8 @@ const TrustCredibility = () => {
                 {/* Infinite Carousel Wrapper */}
                 <div className="relative w-full">
                     {/* Gradients for fade effect */}
-                    <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#f9f9f9] to-transparent z-10 pointer-events-none"></div>
-                    <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#f9f9f9] to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-brand-primary to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-brand-primary to-transparent z-10 pointer-events-none"></div>
 
                     <div className="flex overflow-hidden">
                         <motion.div

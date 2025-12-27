@@ -42,7 +42,7 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
       className={`fixed top-0 left-0 w-full z-[1000] py-4 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)]' : 'bg-transparent'
         }`}
     >
@@ -52,8 +52,8 @@ const Navbar = () => {
             src={logo}
             alt="Classmate Logo"
             className={`w-auto object-contain transition-all duration-300 ${scrolled
-                ? 'h-[36px] sm:h-[40px] md:h-[46px]'
-                : 'h-[40px] sm:h-[44px] md:h-[52px]'
+              ? 'h-[36px] sm:h-[40px] md:h-[46px]'
+              : 'h-[40px] sm:h-[44px] md:h-[52px]'
               }`}
           />
         </a>

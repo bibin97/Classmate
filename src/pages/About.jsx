@@ -64,12 +64,12 @@ const About = () => {
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-50 rounded-full blur-[120px] -z-10 opacity-60"></div>
 
             {/* STRONG OPENING STORY & What Is Classmate Section */}
-            <div className="container mb-24">
-                <div className="text-center mb-20">
+            <div className="container mb-12">
+                <div className="text-center mb-12">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.3 }}
                         viewport={{ once: true }}
                     >
                         <h2 className="text-4xl md:text-5xl mb-6 font-bold leading-tight">
@@ -86,23 +86,23 @@ const About = () => {
                             </p>
                         </div>
 
-                        <div className="bg-teal-50/50 p-6 rounded-2xl border border-teal-100 max-w-[800px] mx-auto mb-16">
+                        <div className="bg-teal-50/50 p-6 rounded-2xl border border-teal-100 max-w-[800px] mx-auto mb-12">
                             <p className="text-gray-700 italic">
                                 "Classmate is Mash Magic’s year-long 1-to-1 online tuition program designed to support students academically and emotionally throughout the academic year. With expert faculty, dedicated mentors, and research-based learning methods, Classmate ensures students don’t just study — they grow, improve, and gain confidence."
                             </p>
                         </div>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {features.map((feature, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                transition={{ duration: 0.3, delay: index * 0.1 }}
                                 viewport={{ once: true }}
                                 whileHover={{ y: -10, boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)' }}
-                                className="bg-white py-12 px-8 rounded-2xl text-left shadow-sm border border-gray-100 hover:border-teal-100 transition-all duration-300"
+                                className="bg-white py-10 px-8 rounded-2xl text-left shadow-sm border border-gray-100 hover:border-teal-100 transition-all duration-300"
                             >
                                 <div className="text-brand-teal mb-6 bg-teal-50 w-fit p-4 rounded-xl">
                                     {feature.icon}
@@ -115,16 +115,17 @@ const About = () => {
                 </div>
 
                 {/* Who Is Classmate For Section */}
-                <div className="max-w-6xl mx-auto bg-brand-primary rounded-3xl p-10 md:p-16 relative overflow-hidden mb-24 text-center">
+                <div className="container bg-brand-primary rounded-3xl p-10 md:p-12 relative overflow-hidden mb-16 text-center">
                     <div className="absolute top-[-10%] left-[-10%] w-[30%] h-[50%] bg-yellow-100 rounded-full blur-[80px] -z-0 opacity-50"></div>
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
                         viewport={{ once: true }}
                         className="relative z-10"
                     >
-                        <h2 className="text-3xl md:text-4xl mb-12 font-bold">Who is <span className="text-brand-teal">Classmate For?</span></h2>
+                        <h2 className="text-3xl md:text-4xl mb-10 font-bold">Who is <span className="text-brand-teal">Classmate For?</span></h2>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {targetAudience.map((item, index) => (
@@ -132,7 +133,7 @@ const About = () => {
                                     key={index}
                                     initial={{ opacity: 0, scale: 0.95 }}
                                     whileInView={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                                    transition={{ duration: 0.2, delay: index * 0.1 }}
                                     viewport={{ once: true }}
                                     whileHover={{ scale: 1.05 }}
                                     className="bg-white p-6 rounded-xl flex flex-col items-center text-center shadow-sm h-full"
@@ -149,7 +150,7 @@ const About = () => {
                 </div>
 
                 {/* Why Parents Choose Classmate */}
-                <div className="mb-24">
+                <div className="mb-16">
                     <div className="text-center mb-10">
                         <h2 className="text-2xl md:text-3xl font-heading font-bold text-brand-heading">
                             Why Parents Choose Classmate
@@ -162,7 +163,7 @@ const About = () => {
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
+                                transition={{ duration: 0.3, delay: index * 0.1 }}
                                 viewport={{ once: true }}
                                 className="flex flex-col items-center text-center gap-4 p-6 bg-white rounded-2xl border border-gray-100 hover:shadow-md transition-all cursor-default"
                             >
@@ -179,8 +180,8 @@ const About = () => {
                 </div>
 
                 {/* COMPARISON SECTION (New) */}
-                <div className="mb-24 bg-gray-50 rounded-3xl p-8 md:p-12">
-                    <div className="text-center mb-10">
+                <div className="mb-16 bg-white rounded-3xl p-8 md:p-10">
+                    <div className="text-center mb-8">
                         <h2 className="text-3xl lg:text-4xl font-bold mb-4">How Classmate is <span className="text-brand-teal">Different</span></h2>
                         <p className="text-gray-600">From Regular Tuition</p>
                     </div>
@@ -201,7 +202,7 @@ const About = () => {
                                 key={index}
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
+                                transition={{ duration: 0.3, delay: index * 0.1 }}
                                 viewport={{ once: true }}
                                 className="col-span-1 md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4 bg-white md:bg-transparent p-4 md:p-0 rounded-xl md:rounded-none border md:border-0 border-gray-100 shadow-sm md:shadow-none items-center"
                             >
@@ -228,8 +229,8 @@ const About = () => {
                 </div>
 
                 {/* Why Classmate Works (Enhanced Premium Horizontal) */}
-                <div className="mb-32">
-                    <div className="text-center mb-16">
+                <div className="mb-16">
+                    <div className="text-center mb-10">
                         <h2 className="text-3xl md:text-5xl font-bold mb-4">Why <span className="text-brand-teal">Classmate</span> Works <br /><span className="text-gray-400 text-2xl md:text-3xl font-medium block mt-2">— Even When Others Don’t</span></h2>
                     </div>
 
@@ -245,7 +246,7 @@ const About = () => {
                                 key={i}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.1 }}
+                                transition={{ duration: 0.3, delay: i * 0.1 }}
                                 viewport={{ once: true }}
                                 whileHover={{ y: -5, boxShadow: "0 10px 30px -5px rgba(0,0,0,0.05)" }}
                                 className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center h-full transition-all duration-300"
@@ -269,13 +270,13 @@ const About = () => {
 
                 {/* Closing CTA (New) */}
                 {/* Premium Minimal CTA */}
-                <div className="container pb-16">
+                <div className="container pb-12">
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, ease: "easeOut" }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                         viewport={{ once: true }}
-                        className="max-w-[900px] mx-auto bg-white rounded-[2rem] p-10 md:p-16 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100"
+                        className="max-w-[900px] mx-auto bg-white rounded-[2rem] p-10 md:p-12 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100"
                     >
                         <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6 leading-tight">
                             Ready to Support Your Child <br className="hidden md:block" />

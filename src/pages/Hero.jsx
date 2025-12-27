@@ -1,23 +1,22 @@
 import React from 'react';
+import hero_student from '../assets/hero_student.png';
 import { motion } from 'framer-motion';
 import { MonitorPlay, UserCheck, Brain } from 'lucide-react';
-import heroImage from '../assets/hero_student.png';
 
 const Hero = () => {
     return (
-        <section className="pt-24 pb-12 overflow-hidden relative">
-            <div className="container grid grid-cols-1 lg:grid-cols-2 gap-16 items-start relative z-10">
+        <section className="pt-20 pb-10 overflow-hidden relative">
+            <div className="container grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10">
 
                 {/* Left Content */}
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.4 }}
                 >
-                    <h1 className="text-4xl lg:text-5xl xl:text-6xl mb-6 leading-tight font-bold">
-                        <span className="block">Consistent Learning.</span>
-                        <span className="block">Personal Academic Care.</span>
-                        <span className="text-brand-teal block">Real, Visible Growth.</span>
+                    <h1 className="text-4xl lg:text-5xl xl:text-6xl mb-4 leading-tight font-bold">
+                        <span className="block">Personal Learning</span>
+                        <span className="block">Visible <span className="text-brand-teal">Academic Growth</span></span>
                     </h1>
 
                     <p className="text-lg text-brand-body mb-6 max-w-[90%] leading-relaxed">
@@ -26,7 +25,7 @@ const Hero = () => {
                     </p>
 
                     {/* Trust Line */}
-                    <div className="flex items-center gap-2 mb-8 text-gray-500 text-sm font-medium">
+                    <div className="flex items-center gap-2 mb-5 text-gray-500 text-sm font-medium">
                         <span className="text-yellow-400">⭐</span>
                         Trusted by 100+ Parents
                     </div>
@@ -61,18 +60,18 @@ const Hero = () => {
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        transition={{ duration: 0.4, delay: 0.1 }}
                         className="relative"
                     >
                         {/* Background blob */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-gradient-to-tr from-teal-50 to-teal-100 rounded-full -z-10 blur-[40px] opacity-70"></div>
 
                         {/* Floating Image */}
-                        <div className="animate-float">
+                        <div className="animate-float transform-gpu flex justify-center items-center">
                             <img
-                                src={heroImage}
+                                src={hero_student}
                                 alt="Mentor teaching student"
-                                className="w-[75%] mx-auto h-auto block drop-shadow-xl"
+                                className="w-auto h-auto max-h-[280px] lg:max-h-[340px] object-contain drop-shadow-2xl rounded-3xl"
                             />
                         </div>
 

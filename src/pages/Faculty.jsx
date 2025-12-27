@@ -83,16 +83,16 @@ const Faculty = () => {
     return (
         <>
             {/* 1. Highly Qualified Faculty Section */}
-            <section id="faculty" className="section-padding bg-white">
+            <section id="faculty" className="section-padding bg-brand-primary">
                 <div className="container text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.3 }}
                         viewport={{ once: true }}
                     >
                         <h2 className="text-4xl md:text-5xl font-bold mb-6">Highly <span className="text-brand-teal">Qualified Faculty</span></h2>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-16">
+                        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
                             We don't just hire tutors. We hire mentors who are experts in their fields.
                         </p>
                     </motion.div>
@@ -102,8 +102,8 @@ const Faculty = () => {
                             <motion.div
                                 key={i}
                                 whileHover={{ y: -10, borderColor: '#008080', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.1)' }}
-                                transition={{ duration: 0.3 }}
-                                className="bg-white p-8 rounded-2xl border border-gray-100 flex flex-col items-center justify-center cursor-default group"
+                                transition={{ duration: 0.2 }}
+                                className="bg-white p-6 rounded-2xl border border-gray-100 flex flex-col items-center justify-center cursor-default group"
                             >
                                 <div className="text-brand-teal mb-6 transform scale-150 group-hover:scale-125 transition-transform duration-300">
                                     {cred.icon}
@@ -119,7 +119,7 @@ const Faculty = () => {
             {/* 2. How We Select Our Faculty Section (New) */}
             <section className="section-padding bg-brand-primary relative overflow-hidden">
                 <div className="container relative z-10">
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-12">
                         {/* Decorative Line */}
                         <div className="flex justify-center mb-4">
                             <div className="w-16 h-1 bg-yellow-400 rounded-full"></div>
@@ -134,7 +134,7 @@ const Faculty = () => {
                                 key={i}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.15 }}
+                                transition={{ duration: 0.3, delay: i * 0.1 }}
                                 viewport={{ once: true }}
                                 className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-l-brand-teal flex flex-col h-full hover:shadow-md transition-shadow"
                             >
@@ -150,10 +150,10 @@ const Faculty = () => {
             </section>
 
             {/* 3. More Than Teachers (Mentor Mindset) Section (New) */}
-            <section className="section-padding bg-white">
+            <section className="section-padding bg-brand-primary">
                 <div className="container">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-12">More Than Teachers. <span className="text-brand-teal border-b-4 border-yellow-400">Real Mentors.</span></h2>
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-10">More Than Teachers. <span className="text-brand-teal border-b-4 border-yellow-400">Real Mentors.</span></h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -161,7 +161,8 @@ const Faculty = () => {
                             <motion.div
                                 key={i}
                                 whileHover={{ scale: 1.03 }}
-                                className="bg-gray-50 p-8 rounded-[2rem] text-center border border-gray-100"
+                                transition={{ duration: 0.2 }}
+                                className="bg-white p-6 rounded-[2rem] text-center border border-gray-100"
                             >
                                 <div className={`${role.bg} ${role.color} w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6`}>
                                     {role.icon}
@@ -175,7 +176,7 @@ const Faculty = () => {
             </section>
 
             {/* 4. Parent Assurance Strip (Redesigned - White Theme) */}
-            <section className="py-16 bg-white border-t-2 border-brand-teal/10 relative">
+            <section className="py-12 bg-brand-primary border-t-2 border-brand-teal/10 relative">
                 {/* Teal Divider Line */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-[2px] bg-brand-teal"></div>
 
@@ -212,10 +213,11 @@ const Faculty = () => {
             </section>
 
             {/* 5. Strong CTA (New) */}
-            <section className="py-20 container text-center">
+            <section className="py-12 container text-center">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}
                     viewport={{ once: true }}
                     className="max-w-4xl mx-auto"
                 >
@@ -225,6 +227,7 @@ const Faculty = () => {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
                             className="bg-yellow-400 text-black py-4 px-10 rounded-full text-lg font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                         >
                             Book a Free Demo <ArrowRight size={20} />
@@ -233,6 +236,7 @@ const Faculty = () => {
                         <motion.button
                             whileHover={{ scale: 1.05, backgroundColor: "#008080", color: "#ffffff" }}
                             whileTap={{ scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
                             className="bg-white text-brand-teal border-2 border-brand-teal py-4 px-10 rounded-full text-lg font-bold transition-all inline-flex items-center justify-center gap-2"
                         >
                             Talk to Academic Advisor
