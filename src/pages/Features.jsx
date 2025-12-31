@@ -6,8 +6,10 @@ import {
     Layout, ArrowRight, BookOpen, Star, UserCheck, Phone
 } from 'lucide-react';
 import demoVideo from '../assets/demo.mp4';
+import { useBooking } from '../context/BookingContext';
 
 const Features = () => {
+    const { openBookingModal } = useBooking();
     // Grouped included items
     const includedGroups = [
         {
@@ -329,8 +331,9 @@ const Features = () => {
                             </p>
 
                             <motion.button
-                                whileHover={{ scale: 1.05 }}
+                                whileHover={{ scale: 1.05, backgroundColor: '#008080', color: '#ffffff' }}
                                 whileTap={{ scale: 0.95 }}
+                                onClick={openBookingModal}
                                 className="bg-brand-accent text-brand-heading py-4 px-10 rounded-full text-lg font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
                             >
                                 Book a Free Demo <ArrowRight size={20} />

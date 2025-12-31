@@ -2,8 +2,11 @@ import React from 'react';
 import hero_student from '../assets/hero_student.png';
 import { motion } from 'framer-motion';
 import { MonitorPlay, UserCheck, Brain } from 'lucide-react';
+import { useBooking } from '../context/BookingContext';
 
 const Hero = () => {
+    const { openBookingModal } = useBooking();
+
     return (
         <section className="pt-20 pb-10 overflow-hidden relative">
             <div className="container grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10">
@@ -36,6 +39,7 @@ const Hero = () => {
                             whileHover={{ scale: 1.05, backgroundColor: '#008080', color: '#ffffff', borderColor: '#008080', boxShadow: '0 10px 25px -5px rgba(0, 128, 128, 0.5)' }}
                             whileTap={{ scale: 0.95 }}
                             transition={{ duration: 0.2 }}
+                            onClick={openBookingModal}
                             className="bg-yellow-400 text-black py-4 px-8 rounded-full text-lg font-bold shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] cursor-pointer border-2 border-yellow-400 w-full sm:w-auto"
                         >
                             Book a Free 1:1 Demo Class
@@ -45,6 +49,7 @@ const Hero = () => {
                             whileHover={{ scale: 1.05, backgroundColor: '#facc15', color: '#000000', borderColor: '#facc15' }}
                             whileTap={{ scale: 0.95 }}
                             transition={{ duration: 0.2 }}
+                            onClick={openBookingModal}
                             className="bg-[#008080] border-2 border-[#008080] text-white py-3.5 px-8 rounded-full text-lg font-semibold cursor-pointer w-full sm:w-auto"
                         >
                             Talk to a Mentor

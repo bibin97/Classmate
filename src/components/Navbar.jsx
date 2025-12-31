@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import logo from '../assets/logo.png';
+import { useBooking } from '../context/BookingContext';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const { openBookingModal } = useBooking();
 
   const [activeTab, setActiveTab] = useState('home');
 
@@ -84,9 +86,10 @@ const Navbar = () => {
         </div>
 
         <motion.button
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.05, backgroundColor: '#008080', color: '#ffffff' }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.2 }}
+          onClick={openBookingModal}
           className="bg-brand-accent text-brand-heading py-3 px-6 rounded-full text-sm font-semibold shadow-[0_4px_14px_0_rgba(248,186,43,0.39)] cursor-pointer animate-pulse-slow hover:animate-none"
         >
           Book a Free Demo

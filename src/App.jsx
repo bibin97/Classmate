@@ -7,29 +7,34 @@ import Features from './pages/Features';
 import Faculty from './pages/Faculty';
 import TrustCredibility from './pages/TrustCredibility';
 import FinalCTA from './pages/FinalCTA';
+import { BookingProvider } from './context/BookingContext';
+import BookingModal from './components/BookingModal';
 
 function App() {
   return (
-    <div className="bg-brand-primary min-h-screen overflow-x-hidden">
-      <Navbar />
-      <div id="home">
-        <Hero />
+    <BookingProvider>
+      <div className="bg-brand-primary min-h-screen overflow-x-hidden relative">
+        <Navbar />
+        <div id="home">
+          <Hero />
+        </div>
+        <div id="about">
+          <About />
+        </div>
+        <div id="features">
+          <Features />
+        </div>
+        <div id="faculty">
+          <Faculty />
+        </div>
+        <div id="success-stories">
+          <TrustCredibility />
+        </div>
+        <FinalCTA />
+        <Footer />
+        <BookingModal />
       </div>
-      <div id="about">
-        <About />
-      </div>
-      <div id="features">
-        <Features />
-      </div>
-      <div id="faculty">
-        <Faculty />
-      </div>
-      <div id="success-stories">
-        <TrustCredibility />
-      </div>
-      <FinalCTA />
-      <Footer />
-    </div>
+    </BookingProvider>
   );
 }
 

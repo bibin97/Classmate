@@ -1,44 +1,53 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useBooking } from '../context/BookingContext';
 
 const FinalCTA = () => {
+    const { openBookingModal } = useBooking();
+
     return (
-        <section className="section-padding" style={{ backgroundColor: '#f3f4f6', textAlign: 'center', padding: '6rem 0' }}>
-            <div className="container">
+        <section className="py-20 px-5">
+            <div className="container mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
+                    className="bg-white rounded-[3rem] p-12 md:p-16 text-center shadow-xl border border-white/50 relative overflow-hidden max-w-5xl mx-auto"
                 >
-                    <h2 style={{ fontSize: '3rem', marginBottom: '1.5rem', lineHeight: 1.2 }}>
-                        Give Your Child the Right<br />
-                        <span className="text-teal">Academic Support</span> — Every Day.
-                    </h2>
-                    <p style={{ fontSize: '1.25rem', color: '#555', marginBottom: '3rem', fontWeight: 500 }}>
-                        Personal tuition. Personal mentor. Complete care.
-                    </p>
+                    {/* Background Decor */}
+                    <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-teal-50 rounded-full blur-[80px] opacity-60"></div>
+                        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-yellow-50 rounded-full blur-[80px] opacity-60"></div>
+                    </div>
 
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        animate={{ scale: [1, 1.03, 1] }}
-                        transition={{
-                            scale: { repeat: Infinity, duration: 2 }
-                        }}
-                        style={{
-                            backgroundColor: 'var(--color-accent)',
-                            color: 'var(--text-heading)',
-                            padding: '1.25rem 3rem',
-                            borderRadius: '50px',
-                            fontSize: '1.2rem',
-                            fontWeight: 700,
-                            boxShadow: '0 4px 20px 0 rgba(248, 186, 43, 0.5)',
-                            border: 'none',
-                            cursor: 'pointer'
-                        }}
-                    >
-                        Book a Free Classmate Demo Now
-                    </motion.button>
+                    <div className="relative z-10">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
+                            Let Us Match Your Child <br className="hidden md:block" />
+                            With the <span className="text-brand-teal">Right Mentor</span>
+                        </h2>
+
+                        <div className="flex flex-col sm:flex-row justify-center gap-4 items-center">
+                            <motion.button
+                                whileHover={{ scale: 1.05, backgroundColor: '#008080', color: '#ffffff', borderColor: '#008080' }}
+                                whileTap={{ scale: 0.95 }}
+                                transition={{ duration: 0.2 }}
+                                onClick={openBookingModal}
+                                className="bg-yellow-400 text-black py-4 px-8 rounded-full text-lg font-bold shadow-lg cursor-pointer border-2 border-yellow-400 min-w-[240px]"
+                            >
+                                Book a Free Demo
+                            </motion.button>
+
+                            <motion.button
+                                whileHover={{ scale: 1.05, backgroundColor: '#facc15', color: '#000000', borderColor: '#facc15' }}
+                                whileTap={{ scale: 0.95 }}
+                                transition={{ duration: 0.2 }}
+                                onClick={openBookingModal}
+                                className="bg-[#008080] border-2 border-[#008080] text-white py-4 px-8 rounded-full text-lg font-bold shadow-lg cursor-pointer min-w-[240px]"
+                            >
+                                Talk to Academic Advisor
+                            </motion.button>
+                        </div>
+                    </div>
                 </motion.div>
             </div>
         </section>

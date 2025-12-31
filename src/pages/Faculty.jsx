@@ -4,8 +4,10 @@ import {
     BadgeCheck, GraduationCap, Award, Book,
     Search, Users, Star, Brain, Heart, TrendingUp, Handshake, ArrowRight
 } from 'lucide-react';
+import { useBooking } from '../context/BookingContext';
 
 const Faculty = () => {
+    const { openBookingModal } = useBooking();
 
     // 1. Qualified Faculty Data (Upgraded)
     const credentials = [
@@ -213,36 +215,51 @@ const Faculty = () => {
             </section>
 
             {/* 5. Strong CTA (New) */}
-            <section className="py-12 container text-center">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                    viewport={{ once: true }}
-                    className="max-w-4xl mx-auto"
-                >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">Let Us Match Your Child With the <span className="text-brand-teal">Right Mentor</span></h2>
+            {/* 5. Strong CTA (New) */}
+            <section className="py-20 px-5 mb-20">
+                <div className="container mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="bg-white rounded-[3rem] p-12 md:p-16 text-center shadow-xl border border-white/50 relative overflow-hidden max-w-5xl mx-auto"
+                    >
+                        {/* Background Decor */}
+                        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-teal-50 rounded-full blur-[80px] opacity-60"></div>
+                            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-yellow-50 rounded-full blur-[80px] opacity-60"></div>
+                        </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ duration: 0.2 }}
-                            className="bg-yellow-400 text-black py-4 px-10 rounded-full text-lg font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
-                        >
-                            Book a Free Demo <ArrowRight size={20} />
-                        </motion.button>
+                        <div className="relative z-10">
+                            <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
+                                Let Us Match Your Child <br className="hidden md:block" />
+                                With the <span className="text-brand-teal">Right Mentor</span>
+                            </h2>
 
-                        <motion.button
-                            whileHover={{ scale: 1.05, backgroundColor: "#008080", color: "#ffffff" }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ duration: 0.2 }}
-                            className="bg-white text-brand-teal border-2 border-brand-teal py-4 px-10 rounded-full text-lg font-bold transition-all inline-flex items-center justify-center gap-2"
-                        >
-                            Talk to Academic Advisor
-                        </motion.button>
-                    </div>
-                </motion.div>
+                            <div className="flex flex-col sm:flex-row justify-center gap-4 items-center">
+                                <motion.button
+                                    whileHover={{ scale: 1.05, backgroundColor: '#008080', color: '#ffffff', borderColor: '#008080' }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                    onClick={openBookingModal}
+                                    className="bg-yellow-400 text-black py-4 px-8 rounded-full text-lg font-bold shadow-lg cursor-pointer border-2 border-yellow-400 min-w-[240px]"
+                                >
+                                    Book a Free Demo
+                                </motion.button>
+
+                                <motion.button
+                                    whileHover={{ scale: 1.05, backgroundColor: '#facc15', color: '#000000', borderColor: '#facc15' }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                    onClick={openBookingModal}
+                                    className="bg-[#008080] border-2 border-[#008080] text-white py-4 px-8 rounded-full text-lg font-bold shadow-lg cursor-pointer min-w-[240px]"
+                                >
+                                    Talk to Academic Advisor
+                                </motion.button>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
             </section>
         </>
     );

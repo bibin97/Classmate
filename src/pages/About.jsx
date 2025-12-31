@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, UserCheck, Microscope, CheckCircle, User, MessageCircle, Users, HeartHandshake, Star, ArrowRight, X, Check, Quote } from 'lucide-react';
+import { useBooking } from '../context/BookingContext';
 
 const About = () => {
+    const { openBookingModal } = useBooking();
+
     const features = [
         {
             icon: <GraduationCap size={32} />,
@@ -289,8 +292,9 @@ const About = () => {
 
                         <div className="flex flex-col items-center gap-6">
                             <motion.button
-                                whileHover={{ scale: 1.03, boxShadow: "0 10px 25px -5px rgba(250, 204, 21, 0.4)" }}
+                                whileHover={{ scale: 1.03, backgroundColor: '#008080', color: '#ffffff', boxShadow: "0 10px 25px -5px rgba(0, 128, 128, 0.4)" }}
                                 whileTap={{ scale: 0.98 }}
+                                onClick={openBookingModal}
                                 className="group bg-yellow-400 text-black py-4 px-10 rounded-full text-lg font-bold shadow-md inline-flex items-center gap-3 transition-all"
                             >
                                 Book a Free Demo Class
