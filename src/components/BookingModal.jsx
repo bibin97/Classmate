@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle, ArrowRight, Loader2 } from 'lucide-react';
+import { X, CheckCircle, ArrowRight, Loader2, User, Phone, MapPin, BookOpen, GraduationCap, Target } from 'lucide-react';
 import { useBooking } from '../context/BookingContext';
 
 const BookingModal = () => {
@@ -15,7 +15,8 @@ const BookingModal = () => {
         whatsappNumber: '',
         grade: '',
         subject: '',
-        place: ''
+        place: '',
+        learningRequirement: ''
     });
 
     // Handle Input Change
@@ -24,8 +25,6 @@ const BookingModal = () => {
         setErrorMessage(''); // Clear errors on type
     };
 
-    // Mock API Call (Replace this with actual API/Google Sheet fetch)
-    // Logic: "Upsert" based on Phone Number to avoid duplicates.
     // Google Sheet Web App URL (REPLACE THIS WITH YOUR ACTUAL URL)
     const SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE";
 
@@ -33,14 +32,14 @@ const BookingModal = () => {
         setLoading(true);
         try {
             // Map form data to Google Sheet column headers
-            // Sheet Columns: timestamp, name, number, grade, subject, place, status
             const payload = new FormData();
             payload.append("timestamp", new Date().toLocaleString());
-            payload.append("name", data.studentName); // Maps 'studentName' -> 'name'
-            payload.append("number", data.whatsappNumber); // Maps 'whatsappNumber' -> 'number'
+            payload.append("name", data.studentName);
+            payload.append("number", data.whatsappNumber);
             payload.append("grade", data.grade || "");
             payload.append("subject", data.subject || "");
             payload.append("place", data.place || "");
+            payload.append("requirement", data.learningRequirement || "");
             payload.append("status", isFinal ? "Completed" : "Partial");
 
             // Send to Google Sheet
@@ -111,7 +110,7 @@ const BookingModal = () => {
         // Reset form after a delay to ensure smooth closing animation
         setTimeout(() => {
             setStep(1);
-            setFormData({ studentName: '', whatsappNumber: '', grade: '', subject: '', place: '' });
+            setFormData({ studentName: '', whatsappNumber: '', grade: '', subject: '', place: '', learningRequirement: '' });
             setErrorMessage('');
         }, 300);
     };
@@ -128,7 +127,7 @@ const BookingModal = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={closeModal}
-                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[2000] flex items-center justify-center p-4"
+                        className="fixed inset-0 bg-black/40 backdrop-blur-md z-[2000] flex items-center justify-center p-4"
                     >
                         {/* Modal Container */}
                         <motion.div
@@ -136,118 +135,151 @@ const BookingModal = () => {
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.95, opacity: 0, y: 20 }}
                             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking content
-                            className="bg-white rounded-3xl w-full max-w-md overflow-hidden shadow-2xl relative"
+                            className="bg-white rounded-[20px] w-full max-w-md overflow-hidden shadow-2xl relative"
                         >
                             {/* Header / Progress */}
-                            <div className="bg-brand-teal p-6 text-white text-center relative">
+                            <div className="bg-yellow-400 py-6 px-8 text-black text-center relative">
                                 <button
                                     onClick={closeModal}
-                                    className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors bg-white/10 p-1 rounded-full"
+                                    className="absolute top-5 right-5 text-black/60 hover:text-black transition-colors p-1"
                                 >
-                                    <X size={20} />
+                                    <X size={24} />
                                 </button>
 
-                                <h3 className="text-xl font-bold mb-2">Book Your Free Demo</h3>
-                                <p className="text-sm text-teal-100 mb-4">
+                                <h3 className="text-2xl font-bold mb-1 tracking-tight">Book Your Free Demo</h3>
+                                <p className="text-sm text-black/70 font-medium mb-5 opacity-90">
                                     {step === 1 ? "Step 1: Let's get to know you" : "Step 2: Academic Details"}
                                 </p>
 
                                 {/* Progress Indicators */}
                                 <div className="flex justify-center gap-2">
-                                    <div className={`h-1.5 rounded-full transition-all duration-300 ${step >= 1 ? 'w-8 bg-white' : 'w-2 bg-white/30'}`}></div>
-                                    <div className={`h-1.5 rounded-full transition-all duration-300 ${step >= 2 ? 'w-8 bg-white' : 'w-2 bg-white/30'}`}></div>
+                                    <div className={`h-1.5 rounded-full transition-all duration-300 ${step >= 1 ? 'w-8 bg-black' : 'w-2 bg-black/20'}`}></div>
+                                    <div className={`h-1.5 rounded-full transition-all duration-300 ${step >= 2 ? 'w-8 bg-black' : 'w-2 bg-black/20'}`}></div>
                                 </div>
                             </div>
 
                             {/* Form Content */}
-                            <div className="p-8">
+                            <div className="p-8 pt-6">
                                 {step === 1 ? (
-                                    <form onSubmit={handleNext} className="flex flex-col gap-4">
+                                    <form onSubmit={handleNext} className="flex flex-col gap-5">
                                         <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-1">Student Name</label>
-                                            <input
-                                                type="text"
-                                                name="studentName"
-                                                value={formData.studentName}
-                                                onChange={handleChange}
-                                                placeholder="Ex: Adithya Kumar"
-                                                className="w-full p-3.5 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-2 focus:ring-teal-50 outline-none transition-all"
-                                            />
+                                            <label className="block text-sm font-semibold text-gray-700 mb-1.5 ml-1">Student Name</label>
+                                            <div className="relative group">
+                                                <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#008080] transition-colors" size={20} />
+                                                <input
+                                                    type="text"
+                                                    name="studentName"
+                                                    value={formData.studentName}
+                                                    onChange={handleChange}
+                                                    placeholder="Ex: Adithya Kumar"
+                                                    className="w-full py-3.5 pl-12 pr-4 rounded-xl border border-gray-200 focus:border-[#008080] focus:ring-4 focus:ring-teal-50/50 outline-none transition-all placeholder:text-gray-400 font-medium"
+                                                />
+                                            </div>
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-1">WhatsApp Number</label>
-                                            <div className="relative">
-                                                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 font-medium">+91</span>
+                                            <label className="block text-sm font-semibold text-gray-700 mb-1.5 ml-1">WhatsApp Number</label>
+                                            <div className="relative group">
+                                                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#008080] transition-colors" size={20} />
+                                                <span className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 font-medium border-r border-gray-300 pr-2 leading-none">+971</span>
                                                 <input
                                                     type="tel"
                                                     name="whatsappNumber"
                                                     value={formData.whatsappNumber}
                                                     onChange={handleChange}
-                                                    placeholder="98765 43210"
-                                                    className="w-full p-3.5 pl-12 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-2 focus:ring-teal-50 outline-none transition-all"
+                                                    placeholder="50 123 4567"
+                                                    className="w-full py-3.5 pl-[5.5rem] pr-4 rounded-xl border border-gray-200 focus:border-[#008080] focus:ring-4 focus:ring-teal-50/50 outline-none transition-all placeholder:text-gray-400 font-medium"
                                                 />
                                             </div>
                                         </div>
 
-                                        {errorMessage && <p className="text-red-500 text-sm text-center">{errorMessage}</p>}
+                                        {errorMessage && <p className="text-red-500 text-sm text-center font-medium bg-red-50 py-2 rounded-lg">{errorMessage}</p>}
 
                                         <button
                                             type="submit"
                                             disabled={loading}
-                                            className="mt-4 bg-brand-accent text-brand-heading py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                            className="mt-2 bg-[#008080] text-white py-4 rounded-full font-bold text-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed w-full"
                                         >
                                             {loading ? <Loader2 className="animate-spin" /> : <>Next Step <ArrowRight size={20} /></>}
                                         </button>
                                     </form>
                                 ) : (
-                                    <form onSubmit={handleFinalSubmit} className="flex flex-col gap-4">
-                                        <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-1">Grade / Class</label>
-                                            <select
-                                                name="grade"
-                                                value={formData.grade}
-                                                onChange={handleChange}
-                                                className="w-full p-3.5 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-2 focus:ring-teal-50 outline-none transition-all bg-white"
-                                            >
-                                                <option value="" disabled>Select Grade</option>
-                                                <option value="Class 1-4">Class 1 - 4</option>
-                                                <option value="Class 5-7">Class 5 - 7</option>
-                                                <option value="Class 8-10">Class 8 - 10</option>
-                                                <option value="Class 11-12">Class 11 - 12</option>
-                                                <option value="Repeater">Repeater</option>
-                                            </select>
+                                    <form onSubmit={handleFinalSubmit} className="flex flex-col gap-5">
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label className="block text-sm font-semibold text-gray-700 mb-1.5 ml-1">Grade / Class</label>
+                                                <div className="relative group">
+                                                    <GraduationCap className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#008080] transition-colors" size={20} />
+                                                    <select
+                                                        name="grade"
+                                                        value={formData.grade}
+                                                        onChange={handleChange}
+                                                        className="w-full py-3.5 pl-12 pr-4 rounded-xl border border-gray-200 focus:border-[#008080] focus:ring-4 focus:ring-teal-50/50 outline-none transition-all bg-white font-medium appearance-none text-sm"
+                                                    >
+                                                        <option value="" disabled>Select Grade</option>
+                                                        {Array.from({ length: 12 }, (_, i) => (
+                                                            <option key={i + 1} value={`Grade ${i + 1}`}>Grade {i + 1}</option>
+                                                        ))}
+                                                        <option value="Repeater">Repeater</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label className="block text-sm font-semibold text-gray-700 mb-1.5 ml-1">Location / City</label>
+                                                <div className="relative group">
+                                                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#008080] transition-colors" size={20} />
+                                                    <input
+                                                        type="text"
+                                                        name="place"
+                                                        value={formData.place}
+                                                        onChange={handleChange}
+                                                        placeholder="Eg: Dubai, Sharjah"
+                                                        className="w-full py-3.5 pl-12 pr-4 rounded-xl border border-gray-200 focus:border-[#008080] focus:ring-4 focus:ring-teal-50/50 outline-none transition-all placeholder:text-gray-400 font-medium text-sm"
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-1">Subject Needed</label>
-                                            <input
-                                                type="text"
-                                                name="subject"
-                                                value={formData.subject}
-                                                onChange={handleChange}
-                                                placeholder="Ex: Maths, Physics, All Subjects"
-                                                className="w-full p-3.5 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-2 focus:ring-teal-50 outline-none transition-all"
-                                            />
+                                            <label className="block text-sm font-semibold text-gray-700 mb-1.5 ml-1">Subject Needed</label>
+                                            <div className="relative group">
+                                                <BookOpen className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#008080] transition-colors" size={20} />
+                                                <input
+                                                    type="text"
+                                                    name="subject"
+                                                    value={formData.subject}
+                                                    onChange={handleChange}
+                                                    placeholder="Ex: Maths, Physics, All Subjects"
+                                                    className="w-full py-3.5 pl-12 pr-4 rounded-xl border border-gray-200 focus:border-[#008080] focus:ring-4 focus:ring-teal-50/50 outline-none transition-all placeholder:text-gray-400 font-medium"
+                                                />
+                                            </div>
                                         </div>
 
                                         <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-1">Location / Place</label>
-                                            <input
-                                                type="text"
-                                                name="place"
-                                                value={formData.place}
-                                                onChange={handleChange}
-                                                placeholder="Ex: Kochi, Kerala"
-                                                className="w-full p-3.5 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-2 focus:ring-teal-50 outline-none transition-all"
-                                            />
+                                            <label className="block text-sm font-semibold text-gray-700 mb-1.5 ml-1">Learning Requirement <span className='text-gray-400 font-normal'>(Optional)</span></label>
+                                            <div className="relative group">
+                                                <Target className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#008080] transition-colors" size={20} />
+                                                <select
+                                                    name="learningRequirement"
+                                                    value={formData.learningRequirement}
+                                                    onChange={handleChange}
+                                                    className="w-full py-3.5 pl-12 pr-4 rounded-xl border border-gray-200 focus:border-[#008080] focus:ring-4 focus:ring-teal-50/50 outline-none transition-all bg-white font-medium appearance-none"
+                                                >
+                                                    <option value="" disabled>Select Requirement</option>
+                                                    <option value="Regular Support">Regular support</option>
+                                                    <option value="Exam Preparation">Exam preparation</option>
+                                                    <option value="Concept Clarity">Concept clarity</option>
+                                                    <option value="Not Sure">Not sure yet</option>
+                                                </select>
+                                            </div>
                                         </div>
 
-                                        {errorMessage && <p className="text-red-500 text-sm text-center">{errorMessage}</p>}
+                                        {errorMessage && <p className="text-red-500 text-sm text-center font-medium bg-red-50 py-2 rounded-lg">{errorMessage}</p>}
 
                                         <button
                                             type="submit"
                                             disabled={loading}
-                                            className="mt-4 bg-brand-teal text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-teal-700 hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                            className="mt-2 bg-[#008080] text-white py-4 rounded-full font-bold text-lg shadow-md hover:bg-teal-700 hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed w-full"
                                         >
                                             {loading ? <Loader2 className="animate-spin" /> : <>Confirm Booking <CheckCircle size={20} /></>}
                                         </button>
@@ -255,15 +287,15 @@ const BookingModal = () => {
                                         <button
                                             type="button"
                                             onClick={() => setStep(1)}
-                                            className="text-xs text-gray-400 font-medium hover:text-gray-600 underline"
+                                            className="text-xs text-gray-400 font-medium hover:text-[#008080] transition-colors underline decoration-dotted underline-offset-4"
                                         >
                                             Go Back
                                         </button>
                                     </form>
                                 )}
 
-                                <p className="text-center text-[10px] text-gray-400 mt-6">
-                                    By submitting, you agree to our Privacy Policy and allow us to contact you via WhatsApp/Call.
+                                <p className="text-center text-[10px] text-gray-400 mt-6 leading-tight max-w-xs mx-auto">
+                                    By submitting, you agree to our Privacy Policy and allow us to contact you via WhatsApp or Call.
                                 </p>
                             </div>
                         </motion.div>
